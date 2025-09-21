@@ -1,32 +1,138 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * import {onCall} from "firebase-functions/v2/https";
- * import {onDocumentWritten} from "firebase-functions/v2/firestore";
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+import * as functions from "firebase-functions";
+import express from "express";
+import * as bodyParser from "body-parser";
+import { computeRecommendations, GoalRecommendation, GoalInput } from "./recommender";
+import * as db from "./db";
 
-import {setGlobalOptions} from "firebase-functions";
-//import {onRequest} from "firebase-functions/https";
-//import * as logger from "firebase-functions/logger";
+functions.setGlobalOptions({ maxInstances: 10 });
 
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
+const app = express();
+app.use(bodyParser.json());
 
-// For cost control, you can set the maximum number of containers that can be
-// running at the same time. This helps mitigate the impact of unexpected
-// traffic spikes by instead downgrading performance. This limit is a
-// per-function limit. You can override the limit for each function using the
-// `maxInstances` option in the function's options, e.g.
-// `onRequest({ maxInstances: 5 }, (req, res) => { ... })`.
-// NOTE: setGlobalOptions does not apply to functions using the v1 API. V1
-// functions should each use functions.runWith({ maxInstances: 10 }) instead.
-// In the v1 API, each function can only serve one request per container, so
-// this will be the maximum concurrent request count.
-setGlobalOptions({ maxInstances: 10 });
+app.post("/recommend", async (req, res) => {
+  try {
+    const { target_amount, current_savings = 0, start_date, end_date, monthly_income, history = [] } = req.body;
 
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+    if (!target_amount || !start_date || !end_date) {
+      return res.status(400).json({ error: "Missing required fields post/recommend" });
+    }
+
+    const input: GoalInput = {
+      targetAmount: target_amount,
+      currentSavings: current_savings,
+      start_date,
+      end_date,
+      monthlyIncome: monthly_income,
+      history
+    };
+
+    const rec: GoalRecommendation = computeRecommendations(input);
+
+    return res.json({ recommendation: rec });
+  } catch (err: unknown) {
+  if (err instanceof Error) {
+    console.error("Full error:", err);
+    console.error("Error stack:", err.stack);
+    return res.status(500).json({
+      error: "Internal server error post/recom1",
+      details: err.message
+    });
+  } else {
+    console.error("Unknown error:", err);
+    return res.status(500).json({
+      error: "Internal server error post/recom2",
+      details: JSON.stringify(err)
+    });
+  }
+}
+
+});
+
+
+app.post("/goal", async (req, res) => {
+  try {
+    const userId = req.query.userId as string;
+    if (!userId) return res.status(400).json({ error: "Missing userId in query post/goal 1" });
+
+    const { name, target_amount, start_date, end_date, current_savings = 0, monthly_income } = req.body;
+    if (!name || !target_amount || !start_date || !end_date) {
+      return res.status(400).json({ error: "Missing required fields post/goal2" });
+    }
+
+    const input: GoalInput = {
+      targetAmount: target_amount,
+      start_date,
+      end_date,
+      currentSavings: current_savings,
+      monthlyIncome: monthly_income,
+      history: []
+    };
+
+    const rec: GoalRecommendation = computeRecommendations(input);
+
+    const goalId = await db.createGoal(userId, {
+      name,
+      target_amount,
+      start_date,
+      end_date,
+      current_savings,
+      recommended_plan: rec
+    });
+
+    return res.json({ goalId, recommended_plan: rec });
+  } catch (err: unknown) {
+  if (err instanceof Error) {
+    console.error("Full error:", err);
+    console.error("Error stack:", err.stack);
+    return res.status(500).json({
+      error: "Internal server error post/goal1",
+      details: err.message
+    });
+  } else {
+    console.error("Unknown error:", err);
+    return res.status(500).json({
+      error: "Internal server error post/goal2",
+      details: JSON.stringify(err)
+    });
+  }
+}
+
+});
+
+
+app.post("/save", async (req, res) => {
+  try {
+    const { userId, goalId, amount } = req.body;
+    if (!userId || !goalId || !amount) return res.status(400).json({ error: "Missing required fields post/save1" });
+
+    const tx = {
+      tx_id: `tx_${Date.now()}_${Math.floor(Math.random() * 10000)}`,
+      provider: "PHONEPE_SANDBOX",
+      status: "SUCCESS",
+      amount
+    };
+
+    await db.addContribution(userId, goalId, amount, tx);
+
+    return res.json({ ok: true, tx });
+  } catch (err: unknown) {
+  if (err instanceof Error) {
+    console.error("Full error:", err);
+    console.error("Error stack:", err.stack);
+    return res.status(500).json({
+      error: "Internal server error post/save1",
+      details: err.message
+    });
+  } else {
+    console.error("Unknown error:", err);
+    return res.status(500).json({
+      error: "Internal server error post/save2",
+      details: JSON.stringify(err)
+    });
+  }
+}
+
+});
+
+
+export const api = functions.https.onRequest(app);
