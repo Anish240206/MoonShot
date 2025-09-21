@@ -11,7 +11,6 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
 
     <style>
-        /* Your entire CSS block remains the same */
         :root {
             --primary-color: #4361ee;
             --secondary-color: #3f37c9;
@@ -46,61 +45,17 @@
             text-align: center;
         }
         
-        .auth-header h4 {
-            margin: 0;
-            font-weight: 600;
-        }
-        
-        .auth-body {
-            padding: 30px;
-        }
-        
-        .form-control:focus {
-            box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
-            border-color: var(--primary-color);
-        }
-        
-        .btn-primary {
-            background-color: var(--primary-color);
-            border: none;
-            padding: 12px;
-            font-weight: 500;
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--secondary-color);
-        }
-        
-        .google-btn {
-            background-color: var(--light-color);
-            color: var(--dark-color);
-            border: 1px solid #ddd;
-            width: 100%;
-            padding: 12px;
-            font-weight: 500;
-        }
-        
-        .google-btn:hover {
-            background-color: #e9ecef;
-        }
-        
-        .google-btn i {
-            margin-right: 10px;
-        }
-        
-        .auth-footer {
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        .auth-footer a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-        
-        .auth-footer a:hover {
-            text-decoration: underline;
-        }
+        .auth-header h4 { margin: 0; font-weight: 600; }
+        .auth-body { padding: 30px; }
+        .form-control:focus { box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25); border-color: var(--primary-color); }
+        .btn-primary { background-color: var(--primary-color); border: none; padding: 12px; font-weight: 500; }
+        .btn-primary:hover { background-color: var(--secondary-color); }
+        .google-btn { background-color: var(--light-color); color: var(--dark-color); border: 1px solid #ddd; width: 100%; padding: 12px; font-weight: 500; }
+        .google-btn:hover { background-color: #e9ecef; }
+        .google-btn i { margin-right: 10px; }
+        .auth-footer { text-align: center; margin-top: 20px; }
+        .auth-footer a { color: var(--primary-color); text-decoration: none; }
+        .auth-footer a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -131,7 +86,6 @@
                 <div class="auth-body">
                     <form id="signup-form">
                         <div class="mb-3"><input type="text" class="form-control" id="signup-name" placeholder="Name" required></div>
-                        <div class="mb-3"><input type="text" class="form-control" id="signup-username" placeholder="Username" required></div>
                         <div class="mb-3"><input type="email" class="form-control" id="signup-email" placeholder="Email" required></div>
                         <div class="mb-3"><input type="password" class="form-control" id="signup-password" placeholder="Password" required></div>
                         <div class="mb-3"><input type="password" class="form-control" id="signup-confirm-password" placeholder="Confirm Password" required></div>
@@ -193,7 +147,7 @@
             projectId: "skarjams2025",
             storageBucket: "skarjams2025.firebasestorage.app",
             messagingSenderId: "198797199512",
-            appId: "1:198797199512:web:d93f1569730dc50ac0e8ed",
+            appId: "1:198797199512:web:d93f1569730dc50ac0e8ed"
         };
 
         firebase.initializeApp(firebaseConfig);
@@ -203,11 +157,10 @@
         const authSection = document.getElementById('auth-section');
         const appSection = document.getElementById('app-section');
         const outputDiv = document.getElementById('output');
-        let currentUserId = null;
+        let currentUserId = null; 
 
         auth.onAuthStateChanged(user => {
             if (user) {
-                // User is signed in.
                 currentUserId = user.uid;
                 document.getElementById('user-welcome-message').textContent = `Welcome, ${user.displayName || 'User'}!`;
                 document.getElementById('user-email-display').textContent = user.email;
@@ -215,7 +168,6 @@
                 appSection.style.display = 'block';
                 authSection.style.display = 'none';
             } else {
-
                 currentUserId = null;
                 appSection.style.display = 'none';
                 authSection.style.display = 'block';
@@ -223,10 +175,11 @@
             }
         });
         
-        
+
         document.getElementById("goalForm").addEventListener("submit", async (e) => {
             e.preventDefault();
             if (!currentUserId) return alert('You must be logged in to create a goal.');
+            
             outputDiv.textContent = 'Processing...';
 
             const form = new FormData(e.target);
@@ -234,21 +187,29 @@
             for (const key in body) { if (key.includes('amount') || key.includes('income') || key.includes('stash')) { if (body[key]) body[key] = Number(body[key]); } }
             
             const apiUrl = `http://127.0.0.1:5001/skarjams2025/us-central1/api/goal?userId=${currentUserId}`;
+
             try {
                 const response = await fetch(apiUrl, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
                 const result = await response.json();
                 if (!response.ok) throw new Error(result.details || 'API request failed');
                 outputDiv.textContent = "Goal created successfully!\n\n" + JSON.stringify(result, null, 2);
-            } catch (error) { outputDiv.textContent = `Error: ${error.message}`; }
+            } catch (error) { 
+                console.error("Goal creation error:", error);
+                outputDiv.textContent = `Error: ${error.message}`; 
+            }
         });
 
         document.getElementById("emergencyForm").addEventListener("submit", async (e) => {
             e.preventDefault();
             if (!currentUserId) return alert('You must be logged in to add to your stash.');
+
             outputDiv.textContent = 'Processing...';
 
             const form = new FormData(e.target);
-            const body = { userId: currentUserId, amount: Number(form.get('amount')) };
+            const body = { 
+                userId: currentUserId, 
+                amount: Number(form.get('amount')) 
+            };
             
             const apiUrl = `http://127.0.0.1:5001/skarjams2025/us-central1/api/emergency/save`;
             try {
@@ -256,7 +217,10 @@
                 const result = await response.json();
                 if (!response.ok) throw new Error(result.details || 'API request failed');
                 outputDiv.textContent = "Emergency stash updated!\n\n" + JSON.stringify(result, null, 2);
-            } catch (error) { outputDiv.textContent = `Error: ${error.message}`; }
+            } catch (error) { 
+                console.error("Emergency stash error:", error);
+                outputDiv.textContent = `Error: ${error.message}`; 
+            }
         });
 
 
@@ -273,7 +237,6 @@
                 .catch(err => alert(err.message));
         });
 
-
         document.getElementById('login-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
@@ -286,7 +249,6 @@
         });
 
         document.getElementById('logout-btn').addEventListener('click', () => auth.signOut());
-
 
         function showAuthPage(pageId) {
             document.querySelectorAll('#auth-section .auth-container').forEach(page => {
