@@ -54,7 +54,7 @@ app.post("/goal", async (req, res) => {
     const userId = req.query.userId as string;
     if (!userId) return res.status(400).json({ error: "Missing userId in query post/goal 1" });
 
-    const { name, target_amount, start_date, end_date, current_savings = 0, monthly_income } = req.body;
+    const { name, target_amount, start_date, end_date, current_savings = 0, monthly_income, emergency_stash_monthly } = req.body;
     if (!name || !target_amount || !start_date || !end_date) {
       return res.status(400).json({ error: "Missing required fields post/goal2" });
     }
@@ -65,6 +65,7 @@ app.post("/goal", async (req, res) => {
       end_date,
       currentSavings: current_savings,
       monthlyIncome: monthly_income,
+      emergencyStashMonthly: emergency_stash_monthly,
       history: []
     };
 
@@ -133,6 +134,32 @@ app.post("/save", async (req, res) => {
 }
 
 });
+
+
+app.post("/emergency/save", async (req, res) => {
+  try {
+    const { userId, amount } = req.body;
+    if (!userId || !amount) return res.status(400).json({ error: "Missing required fields" });
+
+    const tx = {
+      tx_id: `tx_emergency_${Date.now()}`,
+      provider: "INTERNAL",
+      status: "SUCCESS",
+      amount
+    };
+
+    await db.addEmergencyContribution(userId, amount, tx);
+
+    return res.json({ ok: true, message: `Successfully added ${amount} to emergency stash.` });
+
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+        return res.status(500).json({ error: "Internal server error", details: err.message });
+    }
+    return res.status(500).json({ error: "Unknown internal server error" });
+  }
+});
+
 
 
 export const api = functions.https.onRequest(app);

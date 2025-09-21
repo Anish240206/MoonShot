@@ -7,10 +7,12 @@ export interface GoalInput {
   monthlyIncome?: number; 
   history?: number[];     
   currentSavings?: number;
+  emergencyStashMonthly?: number;
 }
 
 export interface GoalRecommendation {
-  contribution: number; 
+  goalContribution: number;
+  emergencyStashContribution: number; 
   explanation: string;  
 }
 
@@ -24,27 +26,27 @@ function monthsBetween(startISO: string, endISO: string): number {
 
 
 export function computeRecommendations(input: GoalInput): GoalRecommendation {
-  const { targetAmount, start_date, end_date, monthlyIncome } = input;
+  const { targetAmount, start_date, end_date, monthlyIncome, emergencyStashMonthly = 0 } = input;
 
   const months = monthsBetween(start_date, end_date);
-
+  const incomeForGoal = monthlyIncome ? monthlyIncome - emergencyStashMonthly : undefined;
   
   const base = targetAmount / months;
   const min_contrib = Math.round(base * 0.8);
   const max_contrib = Math.round(base * 1.2);
   const tidy = Math.round(base);
 
-  let contribution = tidy;
+  let goalContribution = tidy;
 
-  if (monthlyIncome) {
-       contribution = Math.max(min_contrib, Math.min(max_contrib, Math.round(monthlyIncome * 0.12)));
+  if (incomeForGoal && incomeForGoal > 0) {
+    goalContribution = Math.max(min_contrib, Math.min(max_contrib, Math.round(incomeForGoal * 0.15)));
   }
 
-  if (contribution <= 0) contribution = tidy;
+  if (goalContribution <= 0) goalContribution = tidy;
 
   const explanation = monthlyIncome
-    ? `To reach ₹${targetAmount} in ${months} months, save ~₹${contribution}/month (±20% of base, max ~12% of income ₹${monthlyIncome}).`
-    : `To reach ₹${targetAmount} in ${months} months, save ~₹${contribution}/month (evenly divided).`;
+    ? `To reach ₹${targetAmount} in ${months} months, save ~₹${goalContribution}/month (±20% of base, max ~12% of income ₹${monthlyIncome}).`
+    : `To reach ₹${targetAmount} in ${months} months, save ~₹${goalContribution}/month (evenly divided).`;
 
-  return { contribution, explanation };
+  return { goalContribution, emergencyStashContribution: emergencyStashMonthly, explanation };
 }

@@ -63,3 +63,30 @@ export async function addContribution(
 
   await batch.commit();
 }
+
+
+export async function addEmergencyContribution(
+  userId: string,
+  amount: number,
+  tx: { tx_id: string; provider?: string; status?: string }
+) {
+  const stashRef = db.collection("emergency_stashes").doc(userId);
+  const contribRef = stashRef.collection("contributions").doc();
+  const now = FieldValue.serverTimestamp();
+
+  const batch = db.batch();
+
+  batch.set(contribRef, {
+    amount,
+    date: now,
+    tx
+  });
+
+  batch.set(stashRef, {
+    total_savings: FieldValue.increment(amount),
+    updated_at: now
+  }, { merge: true }); 
+
+  await batch.commit();
+}
+
