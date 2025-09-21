@@ -1,0 +1,719 @@
+// ====================================
+// COLLECTION: users
+// ====================================
+{
+  "user_arjun_123": {
+    "profile": {
+      "name": "Arjun Kumar",
+      "email": "arjun.kumar@example.com",
+      "profile_picture": "https://i.pravatar.cc/150?u=arjun",
+      "timezone": "Asia/Kolkata",
+      "prefs": {
+        "notification_frequency": "weekly",
+        "preferred_contribution_day": "friday",
+        "risk_tolerance": "moderate"
+      }
+    },
+    "created_at": "2025-09-21T10:30:00.000Z",
+    "updated_at": "2025-09-21T10:30:00.000Z"
+  },
+  
+  "user_priya_456": {
+    "profile": {
+      "name": "Priya Sharma",
+      "email": "priya.sharma@example.com",
+      "profile_picture": "https://i.pravatar.cc/150?u=priya",
+      "timezone": "Asia/Kolkata",
+      "prefs": {
+        "notification_frequency": "daily",
+        "preferred_contribution_day": "monday",
+        "risk_tolerance": "conservative"
+      }
+    },
+    "created_at": "2025-09-20T14:15:00.000Z",
+    "updated_at": "2025-09-20T14:15:00.000Z"
+  },
+
+  "user_rohit_789": {
+    "profile": {
+      "name": "Rohit Patel",
+      "email": "rohit.patel@example.com",
+      "profile_picture": "https://i.pravatar.cc/150?u=rohit",
+      "timezone": "Asia/Kolkata",
+      "prefs": {
+        "notification_frequency": "weekly",
+        "preferred_contribution_day": "saturday",
+        "risk_tolerance": "aggressive"
+      }
+    },
+    "created_at": "2025-09-19T16:45:00.000Z",
+    "updated_at": "2025-09-19T16:45:00.000Z"
+  }
+}
+
+// ====================================
+// COLLECTION: userFinances
+// ====================================
+{
+  "finance_arjun_123": {
+    "userid": "user_arjun_123",
+    "email": "arjun.kumar@example.com",
+    "monthly_income": 45000,
+    "budget_count": 1,
+    "budget_type": "months",
+    "expense_categories": {
+      "rent": 15000,
+      "food": 8000,
+      "transport": 3000,
+      "utilities": 2000,
+      "entertainment": 5000,
+      "miscellaneous": 4000
+    },
+    "total_monthly_expenses": 37000,
+    "available_for_savings": 8000,
+    "savings_rate": 0.178,
+    "income_sources": [
+      {
+        "source": "salary",
+        "amount": 40000,
+        "frequency": "monthly"
+      },
+      {
+        "source": "freelancing",
+        "amount": 5000,
+        "frequency": "monthly"
+      }
+    ],
+    "created_at": "2025-09-21T10:30:00.000Z",
+    "updated_at": "2025-12-15T08:20:00.000Z"
+  },
+
+  "finance_priya_456": {
+    "userid": "user_priya_456",
+    "email": "priya.sharma@example.com",
+    "monthly_income": 35000,
+    "budget_count": 1,
+    "budget_type": "months",
+    "expense_categories": {
+      "rent": 12000,
+      "food": 6000,
+      "transport": 2500,
+      "utilities": 1500,
+      "entertainment": 3000,
+      "miscellaneous": 3000
+    },
+    "total_monthly_expenses": 28000,
+    "available_for_savings": 7000,
+    "savings_rate": 0.2,
+    "income_sources": [
+      {
+        "source": "salary",
+        "amount": 30000,
+        "frequency": "monthly"
+      },
+      {
+        "source": "part_time",
+        "amount": 5000,
+        "frequency": "monthly"
+      }
+    ],
+    "created_at": "2025-09-20T14:15:00.000Z",
+    "updated_at": "2025-12-20T15:00:00.000Z"
+  },
+
+  "finance_rohit_789": {
+    "userid": "user_rohit_789",
+    "email": "rohit.patel@example.com",
+    "monthly_income": 65000,
+    "budget_count": 1,
+    "budget_type": "months",
+    "expense_categories": {
+      "rent": 20000,
+      "food": 10000,
+      "transport": 4000,
+      "utilities": 3000,
+      "entertainment": 8000,
+      "miscellaneous": 5000
+    },
+    "total_monthly_expenses": 50000,
+    "available_for_savings": 15000,
+    "savings_rate": 0.231,
+    "income_sources": [
+      {
+        "source": "salary",
+        "amount": 65000,
+        "frequency": "monthly"
+      }
+    ],
+    "created_at": "2025-09-19T16:45:00.000Z",
+    "updated_at": "2025-09-19T16:45:00.000Z"
+  }
+}
+
+// ====================================
+// COLLECTION: userGoals
+// ====================================
+{
+  "goal_kerala_trip": {
+    "userid": "user_arjun_123",
+    "email": "arjun.kumar@example.com",
+    "goal_details": {
+      "name": "Kerala Trip",
+      "description": "Family vacation to Kerala for 7 days",
+      "category": "travel",
+      "priority": "medium"
+    },
+    "financial_details": {
+      "target_amount": 80000,
+      "currency": "INR",
+      "current_savings": 12500,
+      "progress_percentage": 15.63
+    },
+    "timeline": {
+      "start_date": "2025-09-21T00:00:00.000Z",
+      "end_date": "2027-09-21T00:00:00.000Z",
+      "timeline_count": 24,
+      "timeline_type": "months"
+    },
+    "recommended_plan": {
+      "monthly_contribution": 3500,
+      "weekly_contribution": 875,
+      "adjustment_factors": {
+        "festival_months": 2000,
+        "lean_months": -500
+      },
+      "explanation": "Based on your income and timeline, saving ₹3,500 monthly will help you reach your goal. Add ₹2,000 extra during festival months to reach early!",
+      "confidence_score": 0.85,
+      "last_updated": "2025-09-21T10:30:00.000Z"
+    },
+    "status": "active",
+    "milestones": [
+      {
+        "percentage": 25,
+        "amount": 20000,
+        "achieved": false,
+        "target_date": "2026-03-21T00:00:00.000Z"
+      },
+      {
+        "percentage": 50,
+        "amount": 40000,
+        "achieved": false,
+        "target_date": "2026-09-21T00:00:00.000Z"
+      },
+      {
+        "percentage": 75,
+        "amount": 60000,
+        "achieved": false,
+        "target_date": "2027-03-21T00:00:00.000Z"
+      },
+      {
+        "percentage": 100,
+        "amount": 80000,
+        "achieved": false,
+        "target_date": "2027-09-21T00:00:00.000Z"
+      }
+    ],
+    "contributions": [
+      {
+        "contribution_id": "contrib_nov_2025",
+        "amount": 3500,
+        "date": "2025-11-01T14:30:00.000Z",
+        "tx_id": "PHONEPE_TXN_001",
+        "provider": "PHONEPE_SANDBOX",
+        "status": "SUCCESS",
+        "payment_method": "UPI",
+        "description": "Monthly contribution - November",
+        "is_bonus": false
+      },
+      {
+        "contribution_id": "contrib_dec_2025",
+        "amount": 5500,
+        "date": "2025-12-01T16:45:00.000Z",
+        "tx_id": "PHONEPE_TXN_002",
+        "provider": "PHONEPE_SANDBOX",
+        "status": "SUCCESS",
+        "payment_method": "UPI",
+        "description": "Monthly contribution + Diwali bonus",
+        "is_bonus": true
+      },
+      {
+        "contribution_id": "contrib_dec_extra",
+        "amount": 3500,
+        "date": "2025-12-15T12:00:00.000Z",
+        "tx_id": "PHONEPE_TXN_003",
+        "provider": "PHONEPE_SANDBOX",
+        "status": "SUCCESS",
+        "payment_method": "UPI",
+        "description": "Extra contribution from salary bonus",
+        "is_bonus": true
+      }
+    ],
+    "created_at": "2025-09-21T10:30:00.000Z",
+    "updated_at": "2025-12-15T08:20:00.000Z"
+  },
+
+  "goal_iphone_15": {
+    "userid": "user_arjun_123",
+    "email": "arjun.kumar@example.com",
+    "goal_details": {
+      "name": "iPhone 15",
+      "description": "Upgrade to iPhone 15 for better camera",
+      "category": "electronics",
+      "priority": "low"
+    },
+    "financial_details": {
+      "target_amount": 79900,
+      "currency": "INR",
+      "current_savings": 15000,
+      "progress_percentage": 18.77
+    },
+    "timeline": {
+      "start_date": "2025-09-21T00:00:00.000Z",
+      "end_date": "2026-09-21T00:00:00.000Z",
+      "timeline_count": 12,
+      "timeline_type": "months"
+    },
+    "recommended_plan": {
+      "monthly_contribution": 5000,
+      "weekly_contribution": 1250,
+      "adjustment_factors": {
+        "sale_months": 3000
+      },
+      "explanation": "Save ₹5,000 monthly to get your iPhone in a year. Watch for sale seasons to contribute extra!",
+      "confidence_score": 0.78,
+      "last_updated": "2025-09-21T10:30:00.000Z"
+    },
+    "status": "active",
+    "milestones": [
+      {
+        "percentage": 25,
+        "amount": 19975,
+        "achieved": false,
+        "target_date": "2026-01-21T00:00:00.000Z"
+      },
+      {
+        "percentage": 50,
+        "amount": 39950,
+        "achieved": false,
+        "target_date": "2026-05-21T00:00:00.000Z"
+      },
+      {
+        "percentage": 75,
+        "amount": 59925,
+        "achieved": false,
+        "target_date": "2026-07-21T00:00:00.000Z"
+      },
+      {
+        "percentage": 100,
+        "amount": 79900,
+        "achieved": false,
+        "target_date": "2026-09-21T00:00:00.000Z"
+      }
+    ],
+    "contributions": [
+      {
+        "contribution_id": "contrib_oct_iphone",
+        "amount": 5000,
+        "date": "2025-10-01T10:00:00.000Z",
+        "tx_id": "PHONEPE_TXN_004",
+        "provider": "PHONEPE_SANDBOX",
+        "status": "SUCCESS",
+        "payment_method": "UPI",
+        "description": "First iPhone contribution",
+        "is_bonus": false
+      },
+      {
+        "contribution_id": "contrib_nov_iphone",
+        "amount": 5000,
+        "date": "2025-11-01T10:00:00.000Z",
+        "tx_id": "PHONEPE_TXN_005",
+        "provider": "PHONEPE_SANDBOX",
+        "status": "SUCCESS",
+        "payment_method": "UPI",
+        "description": "November iPhone contribution",
+        "is_bonus": false
+      },
+      {
+        "contribution_id": "contrib_dec_iphone",
+        "amount": 5000,
+        "date": "2025-12-01T10:00:00.000Z",
+        "tx_id": "PHONEPE_TXN_006",
+        "provider": "PHONEPE_SANDBOX",
+        "status": "SUCCESS",
+        "payment_method": "UPI",
+        "description": "December iPhone contribution",
+        "is_bonus": false
+      }
+    ],
+    "created_at": "2025-09-21T11:00:00.000Z",
+    "updated_at": "2025-12-01T10:00:00.000Z"
+  },
+
+  "goal_emergency_fund": {
+    "userid": "user_priya_456",
+    "email": "priya.sharma@example.com",
+    "goal_details": {
+      "name": "Emergency Fund",
+      "description": "6 months of expenses for financial security",
+      "category": "emergency",
+      "priority": "high"
+    },
+    "financial_details": {
+      "target_amount": 210000,
+      "currency": "INR",
+      "current_savings": 45000,
+      "progress_percentage": 21.43
+    },
+    "timeline": {
+      "start_date": "2025-09-20T00:00:00.000Z",
+      "end_date": "2027-09-20T00:00:00.000Z",
+      "timeline_count": 24,
+      "timeline_type": "months"
+    },
+    "recommended_plan": {
+      "monthly_contribution": 7000,
+      "weekly_contribution": 1750,
+      "adjustment_factors": {
+        "increment_months": 1000
+      },
+      "explanation": "Build your emergency fund with ₹7,000 monthly. This covers 6 months of expenses for peace of mind!",
+      "confidence_score": 0.92,
+      "last_updated": "2025-09-20T14:15:00.000Z"
+    },
+    "status": "active",
+    "milestones": [
+      {
+        "percentage": 25,
+        "amount": 52500,
+        "achieved": false,
+        "target_date": "2026-03-20T00:00:00.000Z"
+      },
+      {
+        "percentage": 50,
+        "amount": 105000,
+        "achieved": false,
+        "target_date": "2026-09-20T00:00:00.000Z"
+      },
+      {
+        "percentage": 75,
+        "amount": 157500,
+        "achieved": false,
+        "target_date": "2027-03-20T00:00:00.000Z"
+      },
+      {
+        "percentage": 100,
+        "amount": 210000,
+        "achieved": false,
+        "target_date": "2027-09-20T00:00:00.000Z"
+      }
+    ],
+    "contributions": [
+      {
+        "contribution_id": "contrib_sep_emergency",
+        "amount": 7000,
+        "date": "2025-09-25T09:30:00.000Z",
+        "tx_id": "PHONEPE_TXN_007",
+        "provider": "PHONEPE_SANDBOX",
+        "status": "SUCCESS",
+        "payment_method": "UPI",
+        "description": "Emergency fund - September",
+        "is_bonus": false
+      },
+      {
+        "contribution_id": "contrib_oct_emergency",
+        "amount": 7000,
+        "date": "2025-10-01T09:30:00.000Z",
+        "tx_id": "PHONEPE_TXN_008",
+        "provider": "PHONEPE_SANDBOX",
+        "status": "SUCCESS",
+        "payment_method": "UPI",
+        "description": "Emergency fund - October",
+        "is_bonus": false
+      },
+      {
+        "contribution_id": "contrib_oct_bonus_emergency",
+        "amount": 10000,
+        "date": "2025-10-15T11:00:00.000Z",
+        "tx_id": "PHONEPE_TXN_009",
+        "provider": "PHONEPE_SANDBOX",
+        "status": "SUCCESS",
+        "payment_method": "UPI",
+        "description": "Freelance income bonus",
+        "is_bonus": true
+      },
+      {
+        "contribution_id": "contrib_nov_emergency",
+        "amount": 7000,
+        "date": "2025-11-01T09:30:00.000Z",
+        "tx_id": "PHONEPE_TXN_010",
+        "provider": "PHONEPE_SANDBOX",
+        "status": "SUCCESS",
+        "payment_method": "UPI",
+        "description": "Emergency fund - November",
+        "is_bonus": false
+      },
+      {
+        "contribution_id": "contrib_dec_emergency",
+        "amount": 7000,
+        "date": "2025-12-01T09:30:00.000Z",
+        "tx_id": "PHONEPE_TXN_011",
+        "provider": "PHONEPE_SANDBOX",
+        "status": "SUCCESS",
+        "payment_method": "UPI",
+        "description": "Emergency fund - December",
+        "is_bonus": false
+      },
+      {
+        "contribution_id": "contrib_dec_increment_emergency",
+        "amount": 7000,
+        "date": "2025-12-20T15:00:00.000Z",
+        "tx_id": "PHONEPE_TXN_012",
+        "provider": "PHONEPE_SANDBOX",
+        "status": "SUCCESS",
+        "payment_method": "UPI",
+        "description": "Year-end increment bonus",
+        "is_bonus": true
+      }
+    ],
+    "created_at": "2025-09-20T14:15:00.000Z",
+    "updated_at": "2025-12-20T15:00:00.000Z"
+  },
+
+  "goal_macbook_air": {
+    "userid": "user_priya_456",
+    "email": "priya.sharma@example.com",
+    "goal_details": {
+      "name": "MacBook Air M2",
+      "description": "New laptop for freelance work",
+      "category": "electronics",
+      "priority": "medium"
+    },
+    "financial_details": {
+      "target_amount": 115000,
+      "currency": "INR",
+      "current_savings": 25000,
+      "progress_percentage": 21.74
+    },
+    "timeline": {
+      "start_date": "2025-09-20T00:00:00.000Z",
+      "end_date": "2026-03-20T00:00:00.000Z",
+      "timeline_count": 6,
+      "timeline_type": "months"
+    },
+    "recommended_plan": {
+      "monthly_contribution": 15000,
+      "weekly_contribution": 3750,
+      "adjustment_factors": {},
+      "explanation": "Save ₹15,000 monthly for 6 months to get your MacBook. This will boost your freelance work!",
+      "confidence_score": 0.88,
+      "last_updated": "2025-09-20T14:15:00.000Z"
+    },
+    "status": "active",
+    "milestones": [
+      {
+        "percentage": 25,
+        "amount": 28750,
+        "achieved": false,
+        "target_date": "2025-11-20T00:00:00.000Z"
+      },
+      {
+        "percentage": 50,
+        "amount": 57500,
+        "achieved": false,
+        "target_date": "2026-01-20T00:00:00.000Z"
+      },
+      {
+        "percentage": 75,
+        "amount": 86250,
+        "achieved": false,
+        "target_date": "2026-02-20T00:00:00.000Z"
+      },
+      {
+        "percentage": 100,
+        "amount": 115000,
+        "achieved": false,
+        "target_date": "2026-03-20T00:00:00.000Z"
+      }
+    ],
+    "contributions": [
+      {
+        "contribution_id": "contrib_oct_laptop",
+        "amount": 15000,
+        "date": "2025-10-05T16:00:00.000Z",
+        "tx_id": "PHONEPE_TXN_013",
+        "provider": "PHONEPE_SANDBOX",
+        "status": "SUCCESS",
+        "payment_method": "UPI",
+        "description": "MacBook savings - October",
+        "is_bonus": false
+      },
+      {
+        "contribution_id": "contrib_nov_laptop",
+        "amount": 15000,
+        "date": "2025-11-05T16:00:00.000Z",
+        "tx_id": "PHONEPE_TXN_014",
+        "provider": "PHONEPE_SANDBOX",
+        "status": "SUCCESS",
+        "payment_method": "UPI",
+        "description": "MacBook savings - November",
+        "is_bonus": false
+      }
+    ],
+    "created_at": "2025-09-20T15:00:00.000Z",
+    "updated_at": "2025-11-05T16:00:00.000Z"
+  },
+
+  "goal_bike_upgrade": {
+    "userid": "user_rohit_789",
+    "email": "rohit.patel@example.com",
+    "goal_details": {
+      "name": "Royal Enfield Classic 350",
+      "description": "Upgrade from current bike to Royal Enfield",
+      "category": "transportation",
+      "priority": "medium"
+    },
+    "financial_details": {
+      "target_amount": 200000,
+      "currency": "INR",
+      "current_savings": 60000,
+      "progress_percentage": 30.0
+    },
+    "timeline": {
+      "start_date": "2025-09-19T00:00:00.000Z",
+      "end_date": "2026-09-19T00:00:00.000Z",
+      "timeline_count": 12,
+      "timeline_type": "months"
+    },
+    "recommended_plan": {
+      "monthly_contribution": 12000,
+      "weekly_contribution": 3000,
+      "adjustment_factors": {
+        "bonus_months": 5000
+      },
+      "explanation": "Save ₹12,000 monthly to get your Royal Enfield in a year. Add extra during bonus months!",
+      "confidence_score": 0.90,
+      "last_updated": "2025-09-19T16:45:00.000Z"
+    },
+    "status": "active",
+    "milestones": [
+      {
+        "percentage": 25,
+        "amount": 50000,
+        "achieved": true,
+        "achieved_date": "2025-10-19T00:00:00.000Z",
+        "target_date": "2025-12-19T00:00:00.000Z"
+      },
+      {
+        "percentage": 50,
+        "amount": 100000,
+        "achieved": false,
+        "target_date": "2026-03-19T00:00:00.000Z"
+      },
+      {
+        "percentage": 75,
+        "amount": 150000,
+        "achieved": false,
+        "target_date": "2026-06-19T00:00:00.000Z"
+      },
+      {
+        "percentage": 100,
+        "amount": 200000,
+        "achieved": false,
+        "target_date": "2026-09-19T00:00:00.000Z"
+      }
+    ],
+    "contributions": [
+      {
+        "contribution_id": "contrib_oct_bike",
+        "amount": 12000,
+        "date": "2025-10-01T18:00:00.000Z",
+        "tx_id": "PHONEPE_TXN_015",
+        "provider": "PHONEPE_SANDBOX",
+        "status": "SUCCESS",
+        "payment_method": "UPI",
+        "description": "Royal Enfield savings - October",
+        "is_bonus": false
+      },
+      {
+        "contribution_id": "contrib_oct_bike_bonus",
+        "amount": 8000,
+        "date": "2025-10-19T20:00:00.000Z",
+        "tx_id": "PHONEPE_TXN_016",
+        "provider": "PHONEPE_SANDBOX",
+        "status": "SUCCESS",
+        "payment_method": "UPI",
+        "description": "Festival bonus for bike",
+        "is_bonus": true
+      },
+      {
+        "contribution_id": "contrib_nov_bike",
+        "amount": 12000,
+        "date": "2025-11-01T18:00:00.000Z",
+        "tx_id": "PHONEPE_TXN_017",
+        "provider": "PHONEPE_SANDBOX",
+        "status": "SUCCESS",
+        "payment_method": "UPI",
+        "description": "Royal Enfield savings - November",
+        "is_bonus": false
+      },
+      {
+        "contribution_id": "contrib_dec_bike",
+        "amount": 12000,
+        "date": "2025-12-01T18:00:00.000Z",
+        "tx_id": "PHONEPE_TXN_018",
+        "provider": "PHONEPE_SANDBOX",
+        "status": "SUCCESS",
+        "payment_method": "UPI",
+        "description": "Royal Enfield savings - December",
+        "is_bonus": false
+      },
+      {
+        "contribution_id": "contrib_dec_bike_bonus",
+        "amount": 16000,
+        "date": "2025-12-25T19:30:00.000Z",
+        "tx_id": "PHONEPE_TXN_019",
+        "provider": "PHONEPE_SANDBOX",
+        "status": "SUCCESS",
+        "payment_method": "UPI",
+        "description": "Year-end bonus for bike",
+        "is_bonus": true
+      }
+    ],
+    "created_at": "2025-09-19T16:45:00.000Z",
+    "updated_at": "2025-12-25T19:30:00.000Z"
+  }
+}
+
+// ====================================
+// COLLECTION: system_config (Optional)
+// ====================================
+{
+  "app_settings": {
+    "ai_rules": {
+      "max_contribution_percentage": 0.3,
+      "min_timeline_months": 1,
+      "max_timeline_months": 60,
+      "default_categories": ["travel", "electronics", "emergency", "education", "transportation", "other"],
+      "risk_multipliers": {
+        "conservative": 0.8,
+        "moderate": 1.0,
+        "aggressive": 1.3
+      }
+    },
+    "phonepe_config": {
+      "sandbox_mode": true,
+      "merchant_id": "SMARTSAVINGS",
+      "api_version": "v1",
+      "supported_methods": ["UPI", "CARD", "WALLET"]
+    },
+    "app_config": {
+      "currency": "INR",
+      "timezone": "Asia/Kolkata",
+      "notification_times": {
+        "morning": "09:00",
+        "evening": "18:00"
+      },
+      "milestone_celebrations": [25, 50, 75, 100]
+    }
+  }
+}
