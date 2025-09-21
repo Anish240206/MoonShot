@@ -1,4 +1,4 @@
-// functions/src/utils.ts
+
 export function roundUpToStep(x: number, step = 10): number {
   return Math.ceil(x / step) * step;
 }
