@@ -1,12 +1,26 @@
-
 :root {
-    --primary-color: #4361ee;
-    --secondary-color: #3f37c9;
-    --success-color: #4cc9f0;
-    --light-color: #f8f9fa;
-    --dark-color: #212529;
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --success-color: #4cc9f0;
+  --light-color: #f8f9fa;
+  --dark-color: #212529;
+
+  /* Moonshot theme */
+  --moonshot-bg: #090040;
+  --moonshot-card-bg: rgba(255, 255, 255, 0.08);
+  --moonshot-gold: #ffd166;
+  --moonshot-green: #06d6a0;
+  --moonshot-blue-dark: #073b4c;
+  --moonshot-purple-accent: #6a00f4;
+  --moonshot-text-light: #f8f9fa;
 }
 
+body {
+  background-color: var(--moonshot-bg);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  color: white;
+}
 
 #root {
     width: 100%;
@@ -15,12 +29,6 @@
     justify-content: center;
     align-items: center;
     padding: 20px 0;
-}
-
-body {
-    background-color: #f5f7fb;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0; 
 }
 
 
